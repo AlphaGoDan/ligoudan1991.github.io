@@ -1,0 +1,34 @@
+extends common/layout
+
+block meta
+    title index
+
+block link
+    link(rel="stylesheet" href="../css/video-js.css")
+ 
+block script
+    script(src='../lib/lozad.js')
+    script(src='../js/jquery.plugin.js')
+    script(src='../js/page.js')
+    script(src='../js/bundle.js') 
+    script.
+        $(function () {
+            // if(document.referrer.indexOf('development.html')>0){
+            //     $('.g-bd').animate({scrollTop: $('.g-bd')[0].scrollHeight}, 200, 'linear');
+            // }
+            var options = {};
+ 
+           const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+           observer.observe();
+        })
+
+block content
+    div.g-bd index
+        
+        div.m-img 
+            img(class='lozad' data-src='../img/test.png')
+
+
+
+
+

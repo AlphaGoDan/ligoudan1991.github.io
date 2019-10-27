@@ -1,0 +1,39 @@
+mixin title(title, tabList)
+    div.m-title
+        div.title.f-fl= title
+        if tabList
+            .tab-ops.f-fr
+                each item,index in tabList
+                    a.tab-item.j-tabChange(class= index === 0 ? 'on' : '' data-index=index data-tab=item.tab href= item.url || 'javascript:;')= item.text
+
+mixin title-1(cn,en)
+    .m-title-1
+        h2.cn=cn
+        h3.en=en
+
+mixin mod-share(modId)
+    div.m-mod-share.j-mod-share(id=modId)
+        div.url.j-copy-url
+            i.iconfont.qs-form_url
+            | 复制链接地址
+        div.divide
+        div.qr
+            i.iconfont.qs-from_camera
+            | 用微信扫一扫
+            div#qr-code.qr-code
+
+mixin crumbs(list)
+    .m-crumbs
+        each item in list
+            if item.url
+                a.crumbs-item(href='/' + item.url)= item.text
+            else
+                a.crumbs-item(href='javascript:;')= item.text
+
+mixin mod-app-dld(modId)
+    .m-mod-app-dld(class=modId)
+        img(src='../img/down_qrcode@2x.png').qrcode
+        .hint 扫一扫立即下载APP
+
+
+                

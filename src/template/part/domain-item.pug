@@ -1,0 +1,15 @@
+- var data=[]
+each item in data
+    -var min = item.minPriceNum
+    -var max = item.maxPriceNum <= 999999 ? item.maxPriceNum : '无上限'
+    li.list-item
+        a.f-cb
+            .item #{item.frontStr + '.' + item.backStr}
+            .item #{item.moralArray.join('，')}
+            .item #{ '.' + item.backStr}
+            if min === -1 || max === -1
+                .item 价格面议
+            else
+                .item #{min + '-' + max}
+
+            .item #{item.updatedAt}
