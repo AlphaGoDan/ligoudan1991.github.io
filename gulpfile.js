@@ -36,7 +36,7 @@ let options = minimist(process.argv.slice(2), {
 
 console.log(options);
 
-let baseEnter = 'web';
+let baseEnter = 'src';
 let baseOutput = options.output;
 let buildOutput = options.buildOutput;
 
@@ -53,7 +53,7 @@ let paths = {
     },
     js: { enter: baseEnter + '/js/**/*.js', output: baseOutput + '/js' },
     es6: { enter: baseEnter + '/js/**/*.es6', output: baseOutput + '/js' },
-    ts: { enter: baseEnter + '/js/bundle.ts', output: baseOutput + '/js' },
+    ts: { enter: baseEnter + '/js/*.ts', output: baseOutput + '/js' },
     libJs: { enter: baseEnter + '/lib/**/*.js', output: baseOutput + '/lib' },
     libmJs: { enter: baseEnter + '/lib-m/**/*.js', output: baseOutput + '/lib' },
     img: { enter: baseEnter + '/img/**/*.*', output: baseOutput + '/img' },
@@ -142,7 +142,7 @@ gTask1('libmJs', pipe().pipe(() => concat('lib.moudel.js')));
 
 gTask1('js');
 
-gTask2('es6')//, pipe().pipe(babel));
+gTask2('es6', pipe().pipe(babel));
 
 gTask2(
     'ts',
@@ -168,7 +168,7 @@ gulp.task('watch', () => {
     gWatchA('img');
     gWatchA('js');
     gWatchA('es6');
-    //gWatchA('ts');
+    gWatchA('ts');
     gWatchA('libJs');
     gWatchA('libmJs');
     gWatchA('html');
@@ -204,7 +204,7 @@ tsWatch.on('update', tsBundle);
 
 tsWatch.on('log', fancy_log);
 
-gulp.task('ts', tsBundle);
+//gulp.task('ts', tsBundle);
 
 gulp.task(
     'default',
@@ -215,7 +215,7 @@ gulp.task(
         'libJs',
         'js',
         'es6',
-        'ts',
+        //'ts',
         'img',
         'html',
         'pug',
